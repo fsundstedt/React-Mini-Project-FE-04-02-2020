@@ -6,8 +6,9 @@ class List extends Component {
     }
 
     getData = async () => {
-        const response = await fetch('localhost:2000/posts');
+        const response = await fetch('http://localhost:2000/posts');
         const data = await response.json();
+        console.log(data[0].id)
         return data;
     }
 
@@ -20,9 +21,16 @@ class List extends Component {
     }
 
     render() {
+        const {data} = this.state;
+
         return (
             <div>
-                aaa
+                {data.map((post, index) => (
+                    <div>
+                        <div>{data[index].title}</div>
+                        <div>{data[index].content}</div>
+                    </div>
+                ))}
             </div>
         )
     }
