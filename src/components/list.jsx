@@ -1,4 +1,9 @@
 import React, {Component} from 'react';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  text-align: center;
+`;
 
 class List extends Component {
     state = {
@@ -8,7 +13,6 @@ class List extends Component {
     getData = async () => {
         const response = await fetch('http://localhost:2000/posts');
         const data = await response.json();
-        console.log(data[0].id)
         return data;
     }
 
@@ -24,14 +28,15 @@ class List extends Component {
         const {data} = this.state;
 
         return (
-            <div>
+            <Wrapper>
                 {data.map((post, index) => (
                     <div>
+                        <br></br>
                         <div>{data[index].title}</div>
-                        <div>{data[index].content}</div>
                     </div>
                 ))}
-            </div>
+                <br></br>
+            </Wrapper>
         )
     }
 }
